@@ -144,10 +144,54 @@ https://wisecow.local:8443
 
 ## Author
 
-**Sameer Aniya**
 
 AccuKnox DevOps Trainee Practical Assessment
 <img width="1912" height="971" alt="image" src="https://github.com/user-attachments/assets/30157ac1-9bb0-4d86-b512-6af09b4761fb" />
+
+## Problem Statement 2
+
+Implemented the following automation scripts:
+
+### 1. backup.sh
+
+Automates backup of a specified directory and generates a success/failure report.
+
+Run:
+
+```bash
+chmod +x backup.sh
+./backup.sh
+```
+### Automated Backup Solution
+
+Script: `backup.sh`
+
+Description:
+- Automates the backup of a specified directory.
+- Creates a compressed backup (`.tar.gz`) with a timestamp.
+- Stores the backup in the configured backup directory.
+- Generates a success or failure report after execution.
+
+Run:
+
+```bash
+chmod +x backup.sh
+./backup.sh
+```
+
+Sample Output:
+
+```
+Starting Backup...
+Source      : /home/username/Documents
+Destination : /home/username/backups/backup_2026-07-21_12-45-18.tar.gz
+
+-------------------------------------
+Backup Status : SUCCESS
+Backup File   : /home/username/backups/backup_2026-07-21_12-45-18.tar.gz
+Date          : Mon Jul 21 12:45:18 IST 2026
+-------------------------------------
+
 
 
 
