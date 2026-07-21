@@ -1,30 +1,153 @@
-# Cow wisdom web server
+# Wisecow Application Deployment on Kubernetes
 
-## Prerequisites
+## Project Overview
+
+This project demonstrates the containerization and deployment of the Wisecow application on Kubernetes as part of the AccuKnox DevOps Trainee Practical Assessment.
+
+The application has been:
+- Dockerized using a Dockerfile
+- Deployed on a Kubernetes cluster (Minikube)
+- Exposed using a Kubernetes Service
+- Secured with TLS using Kubernetes Ingress
+- Automated using GitHub Actions CI/CD
+
+---
+
+## Tech Stack
+
+- Docker
+- Kubernetes
+- Minikube
+- NGINX Ingress Controller
+- GitHub Actions
+- OpenSSL
+
+---
+
+## Project Structure
 
 ```
+.
+├── Dockerfile
+├── wisecow.sh
+├── .github/
+│   └── workflows/
+│       └── deploy.yml
+├── k8s/
+│   ├── deployment.yaml
+│   ├── service.yaml
+│   └── ingress.yaml
+├── certs/
+└── README.md
+```
+
+---
+
+## Running the Application Locally
+
+Install dependencies:
+
+```bash
 sudo apt install fortune-mod cowsay -y
 ```
 
-## How to use?
+Run the application:
 
-1. Run `./wisecow.sh`
-2. Point the browser to server port (default 4499)
+```bash
+./wisecow.sh
+```
 
-## What to expect?
-![wisecow](https://github.com/nyrahul/wisecow/assets/9133227/8d6bfde3-4a5a-480e-8d55-3fef60300d98)
+Open:
 
-# Problem Statement
-Deploy the wisecow application as a k8s app
+```
+http://localhost:4499
+```
 
-## Requirement
-1. Create Dockerfile for the image and corresponding k8s manifest to deploy in k8s env. The wisecow service should be exposed as k8s service.
-2. Github action for creating new image when changes are made to this repo
-3. [Challenge goal]: Enable secure TLS communication for the wisecow app.
+---
 
-## Expected Artifacts
-1. Github repo containing the app with corresponding dockerfile, k8s manifest, any other artifacts needed.
-2. Github repo with corresponding github action.
-3. Github repo should be kept private and the access should be enabled for following github IDs: nyrahul
-=======
-# wisecow 8295d91d499b4cda438f464e746181f352c33867
+## Docker
+
+Build the image:
+
+```bash
+docker build -t blackrabbitx/wisecow:v1 .
+```
+
+Run the container:
+
+```bash
+docker run -d -p 4499:4499 blackrabbitx/wisecow:v1
+```
+
+---
+
+## Kubernetes Deployment
+
+Apply the manifests:
+
+```bash
+kubectl apply -f k8s/
+```
+
+Verify:
+
+```bash
+kubectl get pods
+kubectl get svc
+kubectl get ingress
+```
+
+---
+
+## CI/CD Pipeline
+
+GitHub Actions automatically:
+
+- Builds the Docker image
+- Pushes the image to Docker Hub
+- Triggers on every push to the repository
+
+Workflow location:
+
+```
+.github/workflows/deploy.yml
+```
+
+---
+
+## TLS Configuration
+
+HTTPS is enabled using:
+
+- Kubernetes Ingress
+- Self-signed TLS Certificate
+- Kubernetes TLS Secret (`wisecow-tls`)
+
+Application URL:
+
+```
+https://wisecow.local:8443
+```
+
+---
+
+## Features Implemented
+
+- Dockerized Wisecow application
+- Kubernetes Deployment
+- Kubernetes Service
+- NGINX Ingress
+- TLS enabled
+- GitHub Actions CI pipeline
+
+---
+
+## Author
+
+**Sameer Aniya**
+
+AccuKnox DevOps Trainee Practical Assessment
+<img width="1912" height="971" alt="image" src="https://github.com/user-attachments/assets/30157ac1-9bb0-4d86-b512-6af09b4761fb" />
+
+
+
